@@ -19,7 +19,10 @@
 set :stage, :production
 
 # Replace 127.0.0.1 with your server's IP address!
-server '185.8.239.240', user: 'jirka', roles: %w{web app}
+set :password, ask('Server password:', nil)
+server '185.8.239.240', user: 'jirka', password: fetch(:password), roles: %w{web app}
+
+#server 'server.domain.com', user: 'ssh_user_name', port: 22, password: fetch(:password), roles: %w{web app db}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
